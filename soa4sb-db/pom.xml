@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>ws.crossnet.soa4sb</groupId>
+	<artifactId>dbmodel</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>SOA for Small Business</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<velocity.version>1.7</velocity.version>
+		<poi.version>3.11</poi.version>
+		<junit.version>3.8.1</junit.version>
+		<schema.name>soa4sb</schema.name>
+		<schema.username>system</schema.username>
+		<schema.password>welcome1</schema.password>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.3.1</version>
+				<executions>
+					<execution>
+						<id>install-oracle-jdbc</id>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<groupId>com.oracle</groupId>
+							<artifactId>ojdbc6</artifactId>
+							<version>11.2.0</version>
+							<packaging>jar</packaging>
+							<generatePom>true</generatePom>
+							<createChecksum>true</createChecksum>
+							<file>${project.basedir}/src/lib/ojdbc6.jar</file>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>3.2.1</version>
+
+				<executions>
+					<execution>
+						<goals>
+							<goal>migrate</goal>
+						</goals>
+						<phase>generate-sources</phase>
+					</execution>
+				</executions>
+
+				<configuration>
+					<driver>oracle.jdbc.OracleDriver</driver>
+					<url>jdbc:oracle:thin:@localhost:1521:${schema.name}</url>
+					<user>${schema.username}</user>
+					<password>${schema.password}</password>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
