@@ -1,0 +1,9 @@
+US ID: US01
+Title: Presentar Portafolio de Servicios
+
+Requerimientos del Cliente
+
+* Se debe presentar la lista de todos los portafolios de servicios registrados.
+* Se debe permitir el registro de un nuevo portafolio de servicios.
+* Se debe permitir planificar las fechas de inicio y término del portafolio de servicios.
+
