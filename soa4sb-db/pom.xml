@@ -16,7 +16,7 @@
 		<poi.version>3.11</poi.version>
 		<junit.version>3.8.1</junit.version>
 		<schema.name>soa4sb</schema.name>
-		<schema.username>system</schema.username>
+		<schema.username>soa4sb</schema.username>
 		<schema.password>welcome1</schema.password>
 	</properties>
 
@@ -70,9 +70,12 @@
 
 				<configuration>
 					<driver>oracle.jdbc.OracleDriver</driver>
-					<url>jdbc:oracle:thin:@localhost:1521:${schema.name}</url>
+					<url>jdbc:oracle:thin:@127.0.0.1:1521:xe</url>
 					<user>${schema.username}</user>
 					<password>${schema.password}</password>
+					<locations>
+						<location>filesystem:${basedir}/src/main/resources/db/migration</location>
+					</locations>
 				</configuration>
 			</plugin>
 		</plugins>

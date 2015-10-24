@@ -18,7 +18,7 @@
     </properties>
 		<modules>
 			<module>soa4sb-ejb</module>
-			<module>soa4sb-db</module>
 			<module>soa4sb-web</module>
+			<module>soa4sb-ear</module>
 		</modules>
 </project>

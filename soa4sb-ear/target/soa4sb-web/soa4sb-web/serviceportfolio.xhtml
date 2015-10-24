@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ez="http://java.sun.com/jsf/composite/crossnet"
+	template="/WEB-INF/templates/defaultLayout.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="#{messages.portfolioPage}" />
+	</ui:define>
+
+	<!--ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="servicePortfolioId" 
+				value="#{manageServicePortfolioBackingBean.servicePortfolioId}" />
+			<f:event type="preRenderView" listener="#{manageServicePortfolioBackingBean.loadData}" />
+		</f:metadata>
+	</ui:define-->
+	
+	<ui:define name="menu">
+		<ui:include src="menuportfolio.xhtml"/>
+	</ui:define>
+	
+
+	<ui:define name="content">
+		<h:form>
+			<!-- h:inputHidden value="#{manageServicePortfolioBackingBean.servicePortfolioId}" /-->
+	    	<h:commandButton id="dialogClickBtn" value="Nuevo Servicio" onclick="initNewServiceDialog(); return false;"/>
+	    	
+	    	<ez:paginableDataTable paginateModel="#{manageServicePortfolioBackingBean}">
+	    		<h:column>
+	    			<f:facet name="header">Id</f:facet>
+	    	    	<h:outputText value="#{row.code}"/>
+	    		</h:column>
+	    		<h:column>
+	    			<f:facet name="header">Name</f:facet>
+	    	    	<h:outputText value="#{row.functionalName}"/>
+	    		</h:column>
+	    		<h:column>
+	    			<f:facet name="header">Version</f:facet>
+	    	    	<h:outputText value="#{row.version}"/>
+	    		</h:column>
+	    		<h:column>
+	    			<f:facet name="header">State</f:facet>
+	    	    	<h:outputText value="#{row.state}"/>
+	    		</h:column>
+		    </ez:paginableDataTable>
+		</h:form>
+		
+		<h:panelGroup id="InitNewServiceDialog" style="display:none">
+			<h:form prependId="false">
+				<h:panelGrid columns="2">
+					<h:outputLabel value='Portfolio'/>
+					<h:selectOneMenu value='#{newServiceBackingBean.service.portfolioCode}'>
+						<f:selectItems value="#{newServiceBackingBean.servicesPortfolio}"
+							var="n" 
+							itemValue="#{n.id}" 
+							itemLabel="#{n.name}"/>
+							<!-- http://docs.oracle.com/javaee/6/javaserverfaces/2.0/docs/pdldocs/facelets/f/selectItems.html -->
+					</h:selectOneMenu>
+					<h:outputLabel value='Code'/>
+					<h:inputText value='#{newServiceBackingBean.service.code}'/>
+					<h:outputLabel value='Name'/>
+					<h:inputText value='#{newServiceBackingBean.service.functionalName}'/>
+					<h:outputLabel value='Description'/>
+					<h:inputText value='#{newServiceBackingBean.service.description}'/>                
+					<h:commandButton id="saveButton" 
+						action="#{newServiceBackingBean.save}" 
+						style="display:none"/>
+				</h:panelGrid>
+			</h:form>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

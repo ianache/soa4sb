@@ -3,6 +3,7 @@
 	<name>soa4sb-ear</name>
 	<comment></comment>
 	<projects>
+		<project>soa4sb-ejb</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

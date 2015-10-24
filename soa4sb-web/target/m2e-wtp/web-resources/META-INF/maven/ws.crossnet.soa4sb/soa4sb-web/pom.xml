@@ -7,9 +7,7 @@
     	<version>0.0.1-SNAPSHOT</version>
     </parent>
 
-	<groupId>ws.crossnet.soa4sb</groupId>
 	<artifactId>soa4sb-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>SOA for Small Business // WEB</name>
@@ -27,7 +25,7 @@
 		<!-- maven-compiler-plugin -->
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<maven.compiler.source>1.6</maven.compiler.source>
-		
+		<owb.version>1.5.0</owb.version>
 		<version.org.jboss.spec.jboss.javaee.6.0>3.0.0.Final</version.org.jboss.spec.jboss.javaee.6.0>
 	</properties>
 
@@ -69,22 +67,24 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-	                <groupId>org.jboss.spec</groupId>
-	                <artifactId>jboss-javaee-6.0</artifactId>
-	                <version>${version.org.jboss.spec.jboss.javaee.6.0}</version>
-	                <type>pom</type>
-	                <scope>import</scope>
-	            </dependency>
+                <groupId>org.jboss.spec</groupId>
+                <artifactId>jboss-javaee-6.0</artifactId>
+                <version>${version.org.jboss.spec.jboss.javaee.6.0}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>javax.faces</groupId>
 			<artifactId>jsf-api</artifactId>
@@ -98,7 +98,7 @@
 			<groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-atinject_1.0_spec</artifactId>
 			<version>1.0</version>
-			<scope>compile</scope>
+		    <scope>compile</scope>
 		</dependency>
 
 		<!-- JSR299 -->
@@ -106,8 +106,30 @@
 			<groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-jcdi_1.0_spec</artifactId>
 			<version>1.0</version>
+		    <scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.openwebbeans</groupId>
+		    <artifactId>openwebbeans-spi</artifactId>
+		    <version>${owb.version}</version>
+		    <scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.openwebbeans</groupId>
+		    <artifactId>openwebbeans-impl</artifactId>
+		    <version>${owb.version}</version>
+		    <scope>compile</scope>
+		</dependency>		
+		
+		<dependency>
+			<groupId>org.apache.openwebbeans</groupId>
+			<artifactId>openwebbeans-web</artifactId>
+			<version>${owb.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		
 
 		<dependency>
 			<groupId>ws.crossnet.soa4sb</groupId>
@@ -126,6 +148,19 @@
 			<groupId>org.jboss.spec.javax.ejb</groupId>
 			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.myfaces.tomahawk</groupId>
+			<artifactId>tomahawk20</artifactId>
+			<version>1.1.14</version>
+		</dependency>
+		<dependency>
+			<groupId>ws.crossnet.udm</groupId>
+			<artifactId>udm_core_ejb</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>jar</type>
+			<classifier>client</classifier>
 		</dependency>
 	</dependencies>
 

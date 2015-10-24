@@ -1,0 +1,9 @@
+US ID: US02
+Title: Especificar Mensajeria de Servicio 
+
+Requerimientos del Cliente
+
+* Se debe permitir el registro de objetos de negocio y entidades de negocios con su información.
+* Se debe permitir definir la información de entrada del servicio (asociada con la información de objetos de negocio).
+* Se debe permitir definir la información de respuesta del servicio (asociada con la información de objetos de negocio).
+
